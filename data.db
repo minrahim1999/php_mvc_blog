@@ -1,0 +1,21 @@
+CREATE TABLE `php_mvc_blog`.`users` ( 
+    `id` INT NOT NULL AUTO_INCREMENT , 
+    `username` VARCHAR(255) NOT NULL , 
+    `email` VARCHAR(255) NOT NULL , 
+    `password` VARCHAR(255) NOT NULL , 
+    PRIMARY KEY (`id`), UNIQUE (`email`), 
+    UNIQUE (`username`)) 
+    ENGINE = InnoDB;
+
+CREATE TABLE `php_mvc_blog`.`posts` ( 
+    `id` INT NOT NULL AUTO_INCREMENT , 
+    `user_id` INT NOT NULL , 
+    `title` VARCHAR(255) NOT NULL , 
+    `body` TEXT NOT NULL , 
+    PRIMARY KEY (`id`)) 
+    ENGINE = InnoDB;
+
+ALTER TABLE `posts`
+ ADD CONSTRAINT `FK_USERS_POSTS` 
+ FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) 
+ ON DELETE RESTRICT ON UPDATE RESTRICT;
